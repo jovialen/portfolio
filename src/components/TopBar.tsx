@@ -1,7 +1,7 @@
 import { createEffect, createMemo, createSignal, For, onSettled, Show } from 'solid-js';
 import { useLocation } from '@solidjs/router';
 import { t } from '../content/strings';
-import { locale } from '../preferences';
+import { locale, prefs } from '../preferences';
 import {
   ABOUT_ID,
   activeSection,
@@ -10,6 +10,7 @@ import {
 } from './nav/navLayout';
 import { closePopover, openPopover, togglePopover } from './nav/popover';
 import { NAV_SECTIONS, type SectionId } from './nav/sections';
+import SettingsPanel, { SETTINGS_BUTTON_ID, SETTINGS_PANEL_ID } from './SettingsPanel';
 import styles from './TopBar.module.css';
 
 
@@ -112,9 +113,11 @@ export default function TopBar() {
     spyFrame = requestAnimationFrame(spy);
   }
 
-  // Labels change width with the language; sections exist only on the CV.
+  // Label widths change with the language and the text size (the wrapper's
+  // own width may not change, so the ResizeObserver can't be relied on).
+  // Sections exist only on the CV.
   createEffect(
-    () => locale(),
+    () => `${locale()}|${prefs.size}`,
     () => scheduleMeasure(),
   );
   createEffect(
@@ -149,7 +152,11 @@ export default function TopBar() {
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('pointerdown', onPointerDown);
     wrapEl.addEventListener('focusout', onFocusOut);
-    void document.fonts?.ready.then(scheduleMeasure);
+    // Web fonts change label widths without resizing the wrapper. Listening
+    // for loadingdone is free, whereas reading document.fonts.ready forces a
+    // full style recalc inside this scope (~30ms; dev: HOT_SCOPE_TIME). Fonts
+    // that finished before mount are covered by the initial measure below.
+    document.fonts?.addEventListener('loadingdone', scheduleMeasure);
     scheduleMeasure();
     scheduleSpy();
 
@@ -160,6 +167,7 @@ export default function TopBar() {
       document.removeEventListener('keydown', onKeyDown);
       document.removeEventListener('pointerdown', onPointerDown);
       wrapEl.removeEventListener('focusout', onFocusOut);
+      document.fonts?.removeEventListener('loadingdone', scheduleMeasure);
       cancelAnimationFrame(measureFrame);
       cancelAnimationFrame(spyFrame);
     };
@@ -300,8 +308,10 @@ export default function TopBar() {
         </div>
 
         <button
+          id={SETTINGS_BUTTON_ID}
           type="button"
           class={styles.iconButton}
+          aria-controls={openPopover() === 'settings' ? SETTINGS_PANEL_ID : undefined}
           aria-label={t().settings.title}
           title={t().settings.title}
           aria-haspopup="dialog"
@@ -323,6 +333,10 @@ export default function TopBar() {
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
           </svg>
         </button>
+
+        <Show when={openPopover() === 'settings'}>
+          <SettingsPanel />
+        </Show>
       </div>
     </header>
   );
