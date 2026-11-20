@@ -1,0 +1,10 @@
+/* Temporary height so the nav and scrollspy can be exercised before the real
+   sections exist (#6–#9). Remove with the placeholders. */
+.placeholder {
+  margin-top: 52px;
+  min-height: 60vh;
+}
+
+.placeholder:last-of-type {
+  min-height: 20vh;
+}
