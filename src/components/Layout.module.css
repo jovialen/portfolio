@@ -1,0 +1,17 @@
+.root {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 120px;
+}
+
+@media print {
+  .main {
+    max-width: none;
+    padding: 0;
+  }
+}
