@@ -13,6 +13,8 @@
  * by carrying its own data-theme attribute.
  */
 
+/* Midnight is also the default when no data-theme is set. */
+:root,
 [data-theme='midnight'] {
   --bg: #0e1014;
   --panel: #14171e;

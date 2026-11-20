@@ -1,7 +1,7 @@
 import type { ParentProps } from 'solid-js';
 import { HydrationScript } from '@solidjs/web';
 import { LOCALES } from './i18n/locale';
-import { STORAGE_KEYS } from './preferences';
+import { STORAGE_KEYS } from './preferenceKeys';
 import { DEFAULT_TEXT_SIZE, DEFAULT_THEME, TEXT_SIZES, THEME_IDS } from './theme/themes';
 
 const TITLE = 'Nicolai Frigaard';

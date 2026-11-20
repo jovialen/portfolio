@@ -8,15 +8,6 @@
  */
 
 :root {
-  /* Fallback = Midnight, for the moment before data-theme is set. */
-  --bg: #0e1014;
-  --panel: #14171e;
-  --border: #242a35;
-  --text: #f2f3f8;
-  --accent: #8fae6b;
-  --faint-mix: 56%;
-  --dim-mix: 64%;
-
   --font-sans: 'Geist', -apple-system, system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
@@ -48,6 +39,8 @@
  */
 html {
   font-size: 100%;
+  /* Anchor jumps land below the sticky top bar. */
+  scroll-padding-top: calc(var(--bar-height) + 16px);
 }
 
 html[data-size='small'] {
@@ -68,11 +61,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-}
-
-html {
-  /* Anchor jumps land below the sticky top bar. */
-  scroll-padding-top: calc(var(--bar-height) + 16px);
 }
 
 body {

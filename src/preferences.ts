@@ -8,12 +8,13 @@ import {
   type TextSize,
   type ThemeId,
 } from './theme/themes';
+import { STORAGE_KEYS } from './preferenceKeys';
 
 /*
  * Visitor preferences: language, theme and text size. Loaded from
- * localStorage, saved when the visitor changes one, and mirrored onto <html> as `lang`,
- * `data-theme` and `data-size`. The inline script in Document.tsx applies the
- * same attributes before first paint; keep STORAGE_KEYS in sync with it.
+ * localStorage, saved when the visitor changes one, and mirrored onto <html>
+ * as `lang`, `data-theme` and `data-size`. The inline script in Document.tsx
+ * applies the same attributes before first paint, from the same constants.
  */
 
 export interface Preferences {
@@ -22,11 +23,8 @@ export interface Preferences {
   size: TextSize;
 }
 
-export const STORAGE_KEYS = {
-  lang: 'portfolio.lang',
-  theme: 'portfolio.theme',
-  size: 'portfolio.size',
-} as const satisfies Record<keyof Preferences, string>;
+// Typed against Preferences, so adding a preference without a key fails typecheck.
+const KEYS: Record<keyof Preferences, string> = STORAGE_KEYS;
 
 const DEFAULTS: Preferences = { lang: 'en', theme: DEFAULT_THEME, size: DEFAULT_TEXT_SIZE };
 
@@ -47,9 +45,9 @@ function write(key: string, value: string) {
 }
 
 export function loadPreferences(): Preferences {
-  const lang = read(STORAGE_KEYS.lang);
-  const theme = read(STORAGE_KEYS.theme);
-  const size = read(STORAGE_KEYS.size);
+  const lang = read(KEYS.lang);
+  const theme = read(KEYS.theme);
+  const size = read(KEYS.size);
   return {
     lang: isLocale(lang) ? lang : DEFAULTS.lang,
     theme: isThemeId(theme) ? theme : DEFAULTS.theme,
@@ -64,21 +62,21 @@ export function setLanguage(lang: Locale) {
   setPrefs((p) => {
     p.lang = lang;
   });
-  write(STORAGE_KEYS.lang, lang);
+  write(KEYS.lang, lang);
 }
 
 export function setTheme(theme: ThemeId) {
   setPrefs((p) => {
     p.theme = theme;
   });
-  write(STORAGE_KEYS.theme, theme);
+  write(KEYS.theme, theme);
 }
 
 export function setTextSize(size: TextSize) {
   setPrefs((p) => {
     p.size = size;
   });
-  write(STORAGE_KEYS.size, size);
+  write(KEYS.size, size);
 }
 
 /** The current locale. Reactive. */
