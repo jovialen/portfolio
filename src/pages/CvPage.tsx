@@ -1,4 +1,7 @@
 import { BulletList, Callout, Heading } from '../components/primitives';
+import { NAME, identity, summary } from '../content/cv';
+import { t } from '../content/strings';
+import { tr } from '../i18n/locale';
 
 // Placeholder: the CV sections land in #6 (hero), #7 (history), #8 (projects)
 // and #9 (skills, languages, contact, references, footer).
@@ -6,18 +9,18 @@ export default function CvPage() {
   return (
     <>
       <Heading level={1} id="about">
-        Nicolai Frigaard
+        {NAME}
       </Heading>
+      <p>{tr(identity)}</p>
       <Callout>
-        <p>Portfolio under construction.</p>
+        <p>{tr(summary)}</p>
       </Callout>
       <section>
         <Heading level={2}>Pages</Heading>
         <BulletList
           items={[
-            <a href="/projects">all projects</a>,
-            <a href="/projects/xadrez">projects/xadrez</a>,
-            <a href="/transcript">transcript</a>,
+            <a href="/projects">{t().allProjectsTitle}</a>,
+            <a href="/transcript">{t().transcript.title}</a>,
           ]}
         />
       </section>

@@ -1,14 +1,15 @@
 import { Callout, Heading } from '../components/primitives';
 import BackLink from '../components/BackLink';
+import { t } from '../content/strings';
 
 export default function NotFoundPage() {
   return (
     <>
       <Heading level={1} size="lg" mono>
-        404
+        {t().notFound.title}
       </Heading>
       <Callout>
-        <p>No such file. The page you were looking for doesn’t exist.</p>
+        <p>{t().notFound.body}</p>
       </Callout>
       <BackLink />
     </>
