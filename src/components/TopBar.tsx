@@ -9,18 +9,9 @@ import {
   shouldUseHamburger,
 } from './nav/navLayout';
 import { closePopover, openPopover, togglePopover } from './nav/popover';
+import { NAV_SECTIONS, type SectionId } from './nav/sections';
 import styles from './TopBar.module.css';
 
-/** CV sections in the nav, in page order. Each is the id of a section on `/`. */
-export const NAV_SECTIONS = [
-  'journey',
-  'projects',
-  'skills',
-  'languages',
-  'contact',
-  'references',
-] as const;
-type SectionId = (typeof NAV_SECTIONS)[number];
 
 const NAV_GAP = 14;
 /** How far below the viewport top a section counts as reached (bar + margin). */
@@ -145,6 +136,11 @@ export default function TopBar() {
     const onPointerDown = (e: PointerEvent) => {
       if (openPopover() === 'more' && !wrapEl.contains(e.target as Node)) closePopover();
     };
+    // Keyboard counterpart of the outside click: tabbing out of the nav closes the menu.
+    const onFocusOut = (e: FocusEvent) => {
+      const next = e.relatedTarget as Node | null;
+      if (openPopover() === 'more' && next && !wrapEl.contains(next)) closePopover();
+    };
 
     const resizeObserver = new ResizeObserver(scheduleMeasure);
     resizeObserver.observe(wrapEl);
@@ -152,6 +148,7 @@ export default function TopBar() {
     window.addEventListener('resize', onResize);
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('pointerdown', onPointerDown);
+    wrapEl.addEventListener('focusout', onFocusOut);
     void document.fonts?.ready.then(scheduleMeasure);
     scheduleMeasure();
     scheduleSpy();
@@ -162,6 +159,7 @@ export default function TopBar() {
       window.removeEventListener('resize', onResize);
       document.removeEventListener('keydown', onKeyDown);
       document.removeEventListener('pointerdown', onPointerDown);
+      wrapEl.removeEventListener('focusout', onFocusOut);
       cancelAnimationFrame(measureFrame);
       cancelAnimationFrame(spyFrame);
     };

@@ -1,6 +1,6 @@
 import { For } from 'solid-js';
 import { BulletList, Callout, Heading } from '../components/primitives';
-import { NAV_SECTIONS } from '../components/TopBar';
+import { NAV_SECTIONS } from '../components/nav/sections';
 import { NAME, identity, summary } from '../content/cv';
 import { t } from '../content/strings';
 import { tr } from '../preferences';
