@@ -1,0 +1,14 @@
+.back {
+  margin: 44px 0 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.back a {
+  color: var(--dim);
+}
+
+.back a:hover {
+  color: var(--accent);
+  filter: none;
+}

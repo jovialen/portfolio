@@ -1,5 +1,5 @@
 {
-  "name": "example-bare",
+  "name": "portfolio",
   "version": "0.0.0",
   "description": "",
   "type": "module",
@@ -20,6 +20,7 @@
     "vite": "^8.3.8"
   },
   "dependencies": {
+    "@solidjs/router": "^2.0.1",
     "@solidjs/web": "^2.0.0",
     "solid-js": "^2.0.0"
   }

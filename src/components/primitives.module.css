@@ -1,0 +1,105 @@
+/* Headings */
+
+.heading {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.xl {
+  font-size: 44px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.lg {
+  font-size: 26px;
+  letter-spacing: -0.01em;
+}
+
+.md {
+  font-size: 22px;
+}
+
+.sm {
+  font-size: 16.5px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.headingMarker {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--marker);
+  margin-right: 0.42ch;
+}
+
+/* Shared marker (`>` / `-`) */
+
+.marker {
+  flex: none;
+  font-family: var(--font-mono);
+  color: var(--marker);
+}
+
+/* Callout */
+
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent-line);
+}
+
+.calloutBody {
+  min-width: 0;
+  color: var(--body);
+  line-height: 1.55;
+}
+
+.calloutBody > p {
+  margin: 0;
+}
+
+/* Bullets */
+
+.bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--body);
+  line-height: 1.5;
+}
+
+.bullet {
+  display: flex;
+  gap: 10px;
+}
+
+/* Tags */
+
+.tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--dim);
+  background: var(--chip);
+  border: 1px solid var(--chip-border);
+  border-radius: 5px;
+  padding: 2px 7px;
+}

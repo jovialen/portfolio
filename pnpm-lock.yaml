@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@solidjs/router':
+        specifier: ^2.0.1
+        version: 2.0.1(@solidjs/web@2.0.0(solid-js@2.0.0))(solid-js@2.0.0)
       '@solidjs/web':
         specifier: ^2.0.0
         version: 2.0.0(solid-js@2.0.0)
@@ -343,6 +346,16 @@ packages:
       vitest: '>=2.0.0'
     peerDependenciesMeta:
       vitest:
+        optional: true
+
+  '@solidjs/router@2.0.1':
+    resolution: {integrity: sha512-XFmb2A08mcvSnhKoM4x16Kt6olZMlnDUlzHA3w8nX3gpxPxOs40YP07rH2uNuTliTU7lavkcKIlpQzWzRi4yDw==}
+    peerDependencies:
+      '@solidjs/web': ^2.0.0
+      filesystem-routing: '>=0.4.0'
+      solid-js: ^2.0.0
+    peerDependenciesMeta:
+      filesystem-routing:
         optional: true
 
   '@solidjs/signals@2.0.0':
@@ -986,6 +999,11 @@ snapshots:
   '@solidjs/diagnostics@2.0.0(@solidjs/web@2.0.0(solid-js@2.0.0))(solid-js@2.0.0)':
     dependencies:
       '@solidjs/signals': 2.0.0
+      '@solidjs/web': 2.0.0(solid-js@2.0.0)
+      solid-js: 2.0.0
+
+  '@solidjs/router@2.0.1(@solidjs/web@2.0.0(solid-js@2.0.0))(solid-js@2.0.0)':
+    dependencies:
       '@solidjs/web': 2.0.0(solid-js@2.0.0)
       solid-js: 2.0.0
 
