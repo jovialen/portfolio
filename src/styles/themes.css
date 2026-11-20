@@ -1,0 +1,169 @@
+/*
+ * Colour themes. Each sets the five base colours plus the two mix
+ * percentages for the secondary text tones. global.css derives every other
+ * token from these.
+ *
+ * Contrast: the design used fixed mixes (dim 52%, faint 40%), and faint failed
+ * WCAG AA (4.5:1) in every theme. The mixes below are the lowest that reach
+ * 4.6:1 against --bg, --panel and --panel2 for each theme, with dim kept a
+ * step brighter than faint where the palette allows. A few base colours were
+ * nudged for the same reason, noted inline.
+ *
+ * The selectors work on any element, so a settings swatch can preview a theme
+ * by carrying its own data-theme attribute.
+ */
+
+/* Midnight is also the default when no data-theme is set. */
+:root,
+[data-theme='midnight'] {
+  --bg: #0e1014;
+  --panel: #14171e;
+  --border: #242a35;
+  --text: #f2f3f8;
+  --accent: #8fae6b;
+  --faint-mix: 56%;
+  --dim-mix: 64%;
+}
+
+[data-theme='forest'] {
+  --bg: #0f1512;
+  --panel: #16201a;
+  --border: #24332a;
+  --text: #eaf2ec;
+  --accent: #6bbf7d;
+  --faint-mix: 59%;
+  --dim-mix: 67%;
+}
+
+[data-theme='ocean'] {
+  --bg: #0c141c;
+  --panel: #131f2b;
+  --border: #223444;
+  --text: #e8f0f8;
+  --accent: #4aa6d8;
+  --faint-mix: 59%;
+  --dim-mix: 67%;
+}
+
+[data-theme='bourbon'] {
+  --bg: #17120e;
+  --panel: #211a13;
+  --border: #382c1f;
+  --text: #f2e9df;
+  --accent: #c08a4e;
+  --faint-mix: 59%;
+  --dim-mix: 67%;
+}
+
+[data-theme='dracula'] {
+  --bg: #282a36;
+  --panel: #343746;
+  --border: #454962;
+  --text: #f8f8f2;
+  --accent: #c9a6ff; /* was #bd93f9: 3.97:1 on panels */
+  --faint-mix: 67%;
+  --dim-mix: 75%;
+}
+
+[data-theme='nord'] {
+  --bg: #2e3440;
+  --panel: #3b4252;
+  --border: #4c566a;
+  --text: #eceff4;
+  --accent: #8fcbdb; /* was #88c0d0: 4.16:1 on panels */
+  --faint-mix: 76%;
+  --dim-mix: 78%;
+}
+
+[data-theme='gruvbox'] {
+  --bg: #282828;
+  --panel: #32302f;
+  --border: #504945;
+  --text: #ebdbb2;
+  --accent: #b8bb26;
+  --faint-mix: 72%;
+  --dim-mix: 78%;
+}
+
+[data-theme='soldark'] {
+  --bg: #002b36;
+  --panel: #073642;
+  --border: #204e5a;
+  --text: #eee8d5; /* base2; base1 (#93a1a1) left no room for secondary tones */
+  --accent: #3cc4b8; /* was #2aa198: 4.12:1 on panels */
+  --faint-mix: 68%;
+  --dim-mix: 76%;
+}
+
+[data-theme='tokyo'] {
+  --bg: #1a1b26;
+  --panel: #24283b;
+  --border: #353a52;
+  --text: #c0caf5;
+  --accent: #7aa2f7;
+  --faint-mix: 74%;
+  --dim-mix: 78%;
+}
+
+[data-theme='rosepine'] {
+  --bg: #191724;
+  --panel: #1f1d2e;
+  --border: #322f4a;
+  --text: #e0def4;
+  --accent: #ebbcba;
+  --faint-mix: 63%;
+  --dim-mix: 71%;
+}
+
+[data-theme='catppucc'] {
+  --bg: #1e1e2e;
+  --panel: #313244;
+  --border: #45475a;
+  --text: #cdd6f4;
+  --accent: #a6e3a1;
+  --faint-mix: 77%;
+  --dim-mix: 78%;
+}
+
+[data-theme='monokai'] {
+  --bg: #272822;
+  --panel: #333429;
+  --border: #4a4b3c;
+  --text: #f8f8f2;
+  --accent: #a6e22e;
+  --faint-mix: 65%;
+  --dim-mix: 73%;
+}
+
+[data-theme='paper'] {
+  --bg: #faf9f6;
+  --panel: #ffffff;
+  --border: #e5e2da;
+  --text: #1f1e1c;
+  --accent: #1a5fcf; /* was #1f6feb: 4.40:1 on bg */
+  --faint-mix: 65%;
+  --dim-mix: 73%;
+  color-scheme: light;
+}
+
+[data-theme='sollight'] {
+  --bg: #fdf6e3;
+  --panel: #efe8d3;
+  --border: #ddd6bf;
+  --text: #073642; /* base02; base01-ish #4a5b60 left no room for secondary tones */
+  --accent: #155d92; /* was #268bd2: 3.41:1 on bg */
+  --faint-mix: 76%;
+  --dim-mix: 78%;
+  color-scheme: light;
+}
+
+[data-theme='ghlight'] {
+  --bg: #ffffff;
+  --panel: #f6f8fa;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --accent: #0860c9; /* was #0969da: 4.27:1 on panels */
+  --faint-mix: 69%;
+  --dim-mix: 77%;
+  color-scheme: light;
+}

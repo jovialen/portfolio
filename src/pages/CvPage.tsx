@@ -1,7 +1,7 @@
 import { BulletList, Callout, Heading } from '../components/primitives';
 import { NAME, identity, summary } from '../content/cv';
 import { t } from '../content/strings';
-import { tr } from '../i18n/locale';
+import { tr } from '../preferences';
 
 // Placeholder: the CV sections land in #6 (hero), #7 (history), #8 (projects)
 // and #9 (skills, languages, contact, references, footer).

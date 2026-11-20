@@ -1,4 +1,5 @@
-import { locale, type Localized } from '../i18n/locale';
+import type { Localized } from '../i18n/locale';
+import { locale } from '../preferences';
 
 /*
  * UI strings: labels, headings and chrome. CV facts live in cv.ts, projects

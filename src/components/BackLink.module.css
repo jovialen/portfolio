@@ -1,7 +1,7 @@
 .back {
   margin: 44px 0 0;
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .back a {

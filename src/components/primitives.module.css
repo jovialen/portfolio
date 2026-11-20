@@ -7,22 +7,22 @@
 }
 
 .xl {
-  font-size: 44px;
+  font-size: 2.75rem;
   line-height: 1.08;
   letter-spacing: -0.02em;
 }
 
 .lg {
-  font-size: 26px;
+  font-size: 1.625rem;
   letter-spacing: -0.01em;
 }
 
 .md {
-  font-size: 22px;
+  font-size: 1.375rem;
 }
 
 .sm {
-  font-size: 16.5px;
+  font-size: 1.031rem;
 }
 
 .mono {
@@ -96,7 +96,7 @@
 .tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 0.7188rem;
   color: var(--dim);
   background: var(--chip);
   border: 1px solid var(--chip-border);

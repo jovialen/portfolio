@@ -1,5 +1,3 @@
-import { createSignal } from 'solid-js';
-
 /** Site languages: English, Norwegian Bokmål, Norwegian Nynorsk. */
 export const LOCALES = ['en', 'no', 'nn'] as const;
 export type Locale = (typeof LOCALES)[number];
@@ -16,15 +14,5 @@ export function htmlLang(locale: Locale): string {
   return locale === 'no' ? 'nb' : locale;
 }
 
-// Current locale. The preferences store (#3) takes ownership of this:
-// loading it from localStorage and persisting changes.
-const [locale, setLocale] = createSignal<Locale>('en');
-export { locale, setLocale };
-
-/**
- * Pick the current locale's value. Reactive: call it where Solid tracks
- * reads (JSX, a memo, an effect's compute), not at the top of a component.
- */
-export function tr<T>(value: Localized<T>): T {
-  return value[locale()];
-}
+// The current locale and `tr()` live in ../preferences, which loads and
+// persists the visitor's choice.
