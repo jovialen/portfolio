@@ -77,6 +77,7 @@ const en = {
     small: 'S',
     medium: 'M',
     large: 'L',
+    sizeNames: { small: 'Small', medium: 'Medium', large: 'Large' },
   },
   themeGroups: { signature: 'Signature', editor: 'Editor', light: 'Light' },
   transcript: {
@@ -165,6 +166,7 @@ const no: Strings = {
     small: 'S',
     medium: 'M',
     large: 'L',
+    sizeNames: { small: 'Liten', medium: 'Middels', large: 'Stor' },
   },
   themeGroups: { signature: 'Signatur', editor: 'Editor', light: 'Lys' },
   transcript: {
@@ -251,6 +253,7 @@ const nn: Strings = {
     small: 'S',
     medium: 'M',
     large: 'L',
+    sizeNames: { small: 'Liten', medium: 'Middels', large: 'Stor' },
   },
   themeGroups: { signature: 'Signatur', editor: 'Editor', light: 'Lys' },
   transcript: {
