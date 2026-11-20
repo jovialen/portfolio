@@ -4,7 +4,7 @@ import { Callout, Heading } from '../components/primitives';
 import BackLink from '../components/BackLink';
 import { findProject } from '../content/projects';
 import { t } from '../content/strings';
-import { tr } from '../i18n/locale';
+import { tr } from '../preferences';
 
 // Placeholder: the full project page lands in #8.
 export default function ProjectPage() {

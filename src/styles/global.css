@@ -1,29 +1,21 @@
 /*
  * Global styles and design tokens.
  *
- * Base tokens (--bg, --panel, --border, --text, --accent) default to the
- * Midnight theme here; the theme system (#3) overrides them per
- * [data-theme]. Every other color is derived from the base five, so a theme
- * only ever needs to set those.
+ * Themes (themes.css) set five base colours and two mix percentages under
+ * [data-theme]. Everything else is derived here. The derived tokens are
+ * declared on [data-theme] too, not only :root, so they recompute inside any
+ * themed subtree (e.g. a theme swatch in the settings panel).
  */
 
 :root {
+  /* Fallback = Midnight, for the moment before data-theme is set. */
   --bg: #0e1014;
   --panel: #14171e;
   --border: #242a35;
   --text: #f2f3f8;
   --accent: #8fae6b;
-
-  --body: color-mix(in srgb, var(--text) 82%, var(--bg));
-  --dim: color-mix(in srgb, var(--text) 52%, var(--bg));
-  --faint: color-mix(in srgb, var(--text) 40%, var(--bg));
-  --marker: color-mix(in srgb, var(--text) 30%, var(--bg));
-  --panel2: color-mix(in srgb, var(--text) 7%, var(--panel));
-  --border-soft: color-mix(in srgb, var(--border) 60%, var(--bg));
-  --chip: color-mix(in srgb, var(--text) 6%, var(--panel));
-  --chip-border: var(--border);
-  --bar-bg: color-mix(in srgb, var(--bg) 82%, transparent);
-  --accent-line: color-mix(in srgb, var(--accent) 40%, transparent);
+  --faint-mix: 56%;
+  --dim-mix: 64%;
 
   --font-sans: 'Geist', -apple-system, system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
@@ -33,6 +25,37 @@
   --bar-height: 52px;
 
   color-scheme: dark;
+}
+
+:root,
+[data-theme] {
+  --body: color-mix(in srgb, var(--text) 82%, var(--bg));
+  --dim: color-mix(in srgb, var(--text) var(--dim-mix), var(--bg));
+  --faint: color-mix(in srgb, var(--text) var(--faint-mix), var(--bg));
+  /* Decorative only (aria-hidden markers), so exempt from text contrast. */
+  --marker: color-mix(in srgb, var(--text) 30%, var(--bg));
+  --panel2: color-mix(in srgb, var(--text) 7%, var(--panel));
+  --border-soft: color-mix(in srgb, var(--border) 60%, var(--bg));
+  --chip: color-mix(in srgb, var(--text) 6%, var(--panel));
+  --chip-border: var(--border);
+  --bar-bg: color-mix(in srgb, var(--bg) 82%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/*
+ * Text size scales the root font size; component font sizes are in rem.
+ * Percentages keep the visitor's browser font-size setting as the base.
+ */
+html {
+  font-size: 100%;
+}
+
+html[data-size='small'] {
+  font-size: 90%;
+}
+
+html[data-size='large'] {
+  font-size: 114%;
 }
 
 *,
