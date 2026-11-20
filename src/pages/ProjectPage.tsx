@@ -1,15 +1,37 @@
+import { createMemo, Show } from 'solid-js';
 import { useParams } from '@solidjs/router';
-import { Heading } from '../components/primitives';
+import { Callout, Heading } from '../components/primitives';
 import BackLink from '../components/BackLink';
+import { findProject } from '../content/projects';
+import { t } from '../content/strings';
+import { tr } from '../i18n/locale';
 
-// Placeholder: filled in by #8.
+// Placeholder: the full project page lands in #8.
 export default function ProjectPage() {
   const params = useParams<{ id: string }>();
+  const project = createMemo(() => findProject(params.id));
+
   return (
     <>
-      <Heading level={1} size="lg" mono>
-        {params.id}
-      </Heading>
+      <Show
+        when={project()}
+        fallback={
+          <Callout>
+            <p>{t().detail.notFound}</p>
+          </Callout>
+        }
+      >
+        {(p) => (
+          <>
+            <Heading level={1} size="lg" mono>
+              {p().name}
+            </Heading>
+            <Callout>
+              <p>{tr(p().text).tagline}</p>
+            </Callout>
+          </>
+        )}
+      </Show>
       <BackLink />
     </>
   );
